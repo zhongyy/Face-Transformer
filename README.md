@@ -1,6 +1,6 @@
 # Face-Transformer
 
-This is the code of Face Transformer for Recognition (https://arxiv.org/pdf/2103.14803.pdf). 
+This is the code of Face Transformer for Recognition (https://arxiv.org/abs/2103.14803). 
 
 Recently there has been great interests of Transformer not only in NLP but also in computer vision. We wonder if transformer can be used in face recognition and whether it is better than CNNs. Therefore, we investigate the performance of Transformer models in face recognition. The models are trained on a large scale face recognition database MS-Celeb-1M and evaluated on several mainstream benchmarks, including LFW, SLLFW, CALFW, CPLFW, TALFW, CFP-FP, AGEDB and IJB-C databases. We demonstrate that Transformer models achieve comparable performance as CNN with similar number of parameters and MACs. 
 
