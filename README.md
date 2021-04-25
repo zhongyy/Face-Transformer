@@ -61,7 +61,7 @@ CUDA_VISIBLE_DEVICES='0,1,2,3' python3 -u train.py -b 480 -w 0,1,2,3 -d retina -
 
 ### 4. Pretrained Models and Test Models (on LFW, SLLFW, CALFW, CPLFW, TALFW, CFP_FP, AGEDB)
 You can download the following models
-- ViT-P8S8: [Baidu Netdisk](https://pan.baidu.com/s/1ppgQe1GG3oa2-uz2zzL6EQ)(password: spkf), [Google Drive]（Uploading）
+- ViT-P8S8: [Baidu Netdisk](https://pan.baidu.com/s/1ppgQe1GG3oa2-uz2zzL6EQ)(password: spkf), [Google Drive](https://drive.google.com/drive/folders/1U7MDZSS38cMIvtEWohaLAH4j7JgBNy0T?usp=sharing)
 - ViT-P12S8: [Baidu Netdisk](https://pan.baidu.com/s/1VrDfvz4SvYVnPcTlHVKAkg)(password: 7caa), [Google Drive](https://drive.google.com/drive/folders/1tKjPdDz9WiD-dCjHnkdnyLSs9HS9XUGW?usp=sharing)
 
 You can test Models
