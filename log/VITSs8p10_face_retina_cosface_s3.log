@@ -1,0 +1,988 @@
+GPU_ID [0, 1, 2, 3]
+============================================================
+Overall Configurations:
+{'SEED': 1337, 'INPUT_SIZE': [112, 112], 'EMBEDDING_SIZE': 512, 'DROP_LAST': True, 'WEIGHT_DECAY': 0.0005, 'MOMENTUM': 0.9, 'GPU_ID': [0, 1, 2, 3], 'DEVICE': device(type='cuda', index=0), 'MULTI_GPU': True, 'NUM_EPOCH': 125, 'LR': 5e-05, 'BATCH_SIZE': 480, 'DATA_ROOT': '/ssd/ms1m_retinaface/', 'HRNet_config': {'MODEL': {'NAME': 'cls_hrnet', 'IMAGE_SIZE': [112, 112], 'EXTRA': {'STAGE1': {'NUM_MODULES': 1, 'NUM_RANCHES': 1, 'BLOCK': 'BOTTLENECK', 'NUM_BLOCKS': [4], 'NUM_CHANNELS': [64], 'FUSE_METHOD': 'SUM'}, 'STAGE2': {'NUM_MODULES': 1, 'NUM_BRANCHES': 2, 'BLOCK': 'BASIC', 'NUM_BLOCKS': [4, 4], 'NUM_CHANNELS': [18, 36], 'FUSE_METHOD': 'SUM'}, 'STAGE3': {'NUM_MODULES': 4, 'NUM_BRANCHES': 3, 'BLOCK': 'BASIC', 'NUM_BLOCKS': [4, 4, 4], 'NUM_CHANNELS': [18, 36, 72], 'FUSE_METHOD': 'SUM'}, 'STAGE4': {'NUM_MODULES': 3, 'NUM_BRANCHES': 4, 'BLOCK': 'BASIC', 'NUM_BLOCKS': [4, 4, 4, 4], 'NUM_CHANNELS': [18, 36, 72, 144], 'FUSE_METHOD': 'SUM'}}}}, 'BACKBONE_NAME': 'VITs', 'HEAD_NAME': 'CosFace', 'LOSS_NAME': 'Softmax', 'TARGET': ['lfw', 'talfw', 'calfw_961', 'cplfw_92867', 'cfp_fp', 'agedb_30'], 'BACKBONE_RESUME_ROOT': '/home/cib-bupt/yy/insightface_torch/results/VITSs8p10_face_retina_cosface_s2/Backbone_VITs_Epoch_6_Batch_64000_Time_2021-03-23-09-44_checkpoint.pth', 'WORK_PATH': '/home/cib-bupt/yy/insightface_torch/results/VITSs8p10_face_retina_cosface_s3'}
+============================================================
+/ssd/ms1m_retinaface/train.rec /ssd/ms1m_retinaface/train.idx
+header0 label [5179511. 5272942.]
+id2range 93431
+Number of Training Classes: 93431
+loading bin 0
+loading bin 1000
+loading bin 2000
+loading bin 3000
+loading bin 4000
+loading bin 5000
+loading bin 6000
+loading bin 7000
+loading bin 8000
+loading bin 9000
+loading bin 10000
+loading bin 11000
+torch.Size([12000, 3, 112, 112])
+ver lfw
+loading bin 0
+loading bin 1000
+loading bin 2000
+loading bin 3000
+loading bin 4000
+loading bin 5000
+loading bin 6000
+loading bin 7000
+loading bin 8000
+loading bin 9000
+loading bin 10000
+loading bin 11000
+torch.Size([12000, 3, 112, 112])
+ver talfw
+loading bin 0
+loading bin 1000
+loading bin 2000
+loading bin 3000
+loading bin 4000
+loading bin 5000
+loading bin 6000
+loading bin 7000
+loading bin 8000
+loading bin 9000
+loading bin 10000
+loading bin 11000
+torch.Size([12000, 3, 112, 112])
+ver calfw_961
+loading bin 0
+loading bin 1000
+loading bin 2000
+loading bin 3000
+loading bin 4000
+loading bin 5000
+loading bin 6000
+loading bin 7000
+loading bin 8000
+loading bin 9000
+loading bin 10000
+loading bin 11000
+torch.Size([12000, 3, 112, 112])
+ver cplfw_92867
+loading bin 0
+loading bin 1000
+loading bin 2000
+loading bin 3000
+loading bin 4000
+loading bin 5000
+loading bin 6000
+loading bin 7000
+loading bin 8000
+loading bin 9000
+loading bin 10000
+loading bin 11000
+loading bin 12000
+loading bin 13000
+torch.Size([14000, 3, 112, 112])
+ver cfp_fp
+loading bin 0
+loading bin 1000
+loading bin 2000
+loading bin 3000
+loading bin 4000
+loading bin 5000
+loading bin 6000
+loading bin 7000
+loading bin 8000
+loading bin 9000
+loading bin 10000
+loading bin 11000
+torch.Size([12000, 3, 112, 112])
+ver agedb_30
+self.device_id [0, 1, 2, 3]
+self.device_id [0, 1, 2, 3]
+self.device_id [0, 1, 2, 3]
+============================================================
+ViTs_face(
+  (soft_split): Unfold(kernel_size=(10, 10), dilation=1, padding=(1, 1), stride=(8, 8))
+  (patch_to_embedding): Linear(in_features=300, out_features=512, bias=True)
+  (dropout): Dropout(p=0.1, inplace=False)
+  (transformer): Transformer(
+    (layers): ModuleList(
+      (0): ModuleList(
+        (0): Residual(
+          (fn): PreNorm(
+            (norm): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+            (fn): Attention(
+              (to_qkv): Linear(in_features=512, out_features=1536, bias=False)
+              (to_out): Sequential(
+                (0): Linear(in_features=512, out_features=512, bias=True)
+                (1): Dropout(p=0.1, inplace=False)
+              )
+            )
+          )
+        )
+        (1): Residual(
+          (fn): PreNorm(
+            (norm): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+            (fn): FeedForward(
+              (net): Sequential(
+                (0): Linear(in_features=512, out_features=2048, bias=True)
+                (1): GELU()
+                (2): Dropout(p=0.1, inplace=False)
+                (3): Linear(in_features=2048, out_features=512, bias=True)
+                (4): Dropout(p=0.1, inplace=False)
+              )
+            )
+          )
+        )
+      )
+      (1): ModuleList(
+        (0): Residual(
+          (fn): PreNorm(
+            (norm): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+            (fn): Attention(
+              (to_qkv): Linear(in_features=512, out_features=1536, bias=False)
+              (to_out): Sequential(
+                (0): Linear(in_features=512, out_features=512, bias=True)
+                (1): Dropout(p=0.1, inplace=False)
+              )
+            )
+          )
+        )
+        (1): Residual(
+          (fn): PreNorm(
+            (norm): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+            (fn): FeedForward(
+              (net): Sequential(
+                (0): Linear(in_features=512, out_features=2048, bias=True)
+                (1): GELU()
+                (2): Dropout(p=0.1, inplace=False)
+                (3): Linear(in_features=2048, out_features=512, bias=True)
+                (4): Dropout(p=0.1, inplace=False)
+              )
+            )
+          )
+        )
+      )
+      (2): ModuleList(
+        (0): Residual(
+          (fn): PreNorm(
+            (norm): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+            (fn): Attention(
+              (to_qkv): Linear(in_features=512, out_features=1536, bias=False)
+              (to_out): Sequential(
+                (0): Linear(in_features=512, out_features=512, bias=True)
+                (1): Dropout(p=0.1, inplace=False)
+              )
+            )
+          )
+        )
+        (1): Residual(
+          (fn): PreNorm(
+            (norm): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+            (fn): FeedForward(
+              (net): Sequential(
+                (0): Linear(in_features=512, out_features=2048, bias=True)
+                (1): GELU()
+                (2): Dropout(p=0.1, inplace=False)
+                (3): Linear(in_features=2048, out_features=512, bias=True)
+                (4): Dropout(p=0.1, inplace=False)
+              )
+            )
+          )
+        )
+      )
+      (3): ModuleList(
+        (0): Residual(
+          (fn): PreNorm(
+            (norm): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+            (fn): Attention(
+              (to_qkv): Linear(in_features=512, out_features=1536, bias=False)
+              (to_out): Sequential(
+                (0): Linear(in_features=512, out_features=512, bias=True)
+                (1): Dropout(p=0.1, inplace=False)
+              )
+            )
+          )
+        )
+        (1): Residual(
+          (fn): PreNorm(
+            (norm): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+            (fn): FeedForward(
+              (net): Sequential(
+                (0): Linear(in_features=512, out_features=2048, bias=True)
+                (1): GELU()
+                (2): Dropout(p=0.1, inplace=False)
+                (3): Linear(in_features=2048, out_features=512, bias=True)
+                (4): Dropout(p=0.1, inplace=False)
+              )
+            )
+          )
+        )
+      )
+      (4): ModuleList(
+        (0): Residual(
+          (fn): PreNorm(
+            (norm): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+            (fn): Attention(
+              (to_qkv): Linear(in_features=512, out_features=1536, bias=False)
+              (to_out): Sequential(
+                (0): Linear(in_features=512, out_features=512, bias=True)
+                (1): Dropout(p=0.1, inplace=False)
+              )
+            )
+          )
+        )
+        (1): Residual(
+          (fn): PreNorm(
+            (norm): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+            (fn): FeedForward(
+              (net): Sequential(
+                (0): Linear(in_features=512, out_features=2048, bias=True)
+                (1): GELU()
+                (2): Dropout(p=0.1, inplace=False)
+                (3): Linear(in_features=2048, out_features=512, bias=True)
+                (4): Dropout(p=0.1, inplace=False)
+              )
+            )
+          )
+        )
+      )
+      (5): ModuleList(
+        (0): Residual(
+          (fn): PreNorm(
+            (norm): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+            (fn): Attention(
+              (to_qkv): Linear(in_features=512, out_features=1536, bias=False)
+              (to_out): Sequential(
+                (0): Linear(in_features=512, out_features=512, bias=True)
+                (1): Dropout(p=0.1, inplace=False)
+              )
+            )
+          )
+        )
+        (1): Residual(
+          (fn): PreNorm(
+            (norm): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+            (fn): FeedForward(
+              (net): Sequential(
+                (0): Linear(in_features=512, out_features=2048, bias=True)
+                (1): GELU()
+                (2): Dropout(p=0.1, inplace=False)
+                (3): Linear(in_features=2048, out_features=512, bias=True)
+                (4): Dropout(p=0.1, inplace=False)
+              )
+            )
+          )
+        )
+      )
+      (6): ModuleList(
+        (0): Residual(
+          (fn): PreNorm(
+            (norm): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+            (fn): Attention(
+              (to_qkv): Linear(in_features=512, out_features=1536, bias=False)
+              (to_out): Sequential(
+                (0): Linear(in_features=512, out_features=512, bias=True)
+                (1): Dropout(p=0.1, inplace=False)
+              )
+            )
+          )
+        )
+        (1): Residual(
+          (fn): PreNorm(
+            (norm): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+            (fn): FeedForward(
+              (net): Sequential(
+                (0): Linear(in_features=512, out_features=2048, bias=True)
+                (1): GELU()
+                (2): Dropout(p=0.1, inplace=False)
+                (3): Linear(in_features=2048, out_features=512, bias=True)
+                (4): Dropout(p=0.1, inplace=False)
+              )
+            )
+          )
+        )
+      )
+      (7): ModuleList(
+        (0): Residual(
+          (fn): PreNorm(
+            (norm): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+            (fn): Attention(
+              (to_qkv): Linear(in_features=512, out_features=1536, bias=False)
+              (to_out): Sequential(
+                (0): Linear(in_features=512, out_features=512, bias=True)
+                (1): Dropout(p=0.1, inplace=False)
+              )
+            )
+          )
+        )
+        (1): Residual(
+          (fn): PreNorm(
+            (norm): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+            (fn): FeedForward(
+              (net): Sequential(
+                (0): Linear(in_features=512, out_features=2048, bias=True)
+                (1): GELU()
+                (2): Dropout(p=0.1, inplace=False)
+                (3): Linear(in_features=2048, out_features=512, bias=True)
+                (4): Dropout(p=0.1, inplace=False)
+              )
+            )
+          )
+        )
+      )
+      (8): ModuleList(
+        (0): Residual(
+          (fn): PreNorm(
+            (norm): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+            (fn): Attention(
+              (to_qkv): Linear(in_features=512, out_features=1536, bias=False)
+              (to_out): Sequential(
+                (0): Linear(in_features=512, out_features=512, bias=True)
+                (1): Dropout(p=0.1, inplace=False)
+              )
+            )
+          )
+        )
+        (1): Residual(
+          (fn): PreNorm(
+            (norm): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+            (fn): FeedForward(
+              (net): Sequential(
+                (0): Linear(in_features=512, out_features=2048, bias=True)
+                (1): GELU()
+                (2): Dropout(p=0.1, inplace=False)
+                (3): Linear(in_features=2048, out_features=512, bias=True)
+                (4): Dropout(p=0.1, inplace=False)
+              )
+            )
+          )
+        )
+      )
+      (9): ModuleList(
+        (0): Residual(
+          (fn): PreNorm(
+            (norm): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+            (fn): Attention(
+              (to_qkv): Linear(in_features=512, out_features=1536, bias=False)
+              (to_out): Sequential(
+                (0): Linear(in_features=512, out_features=512, bias=True)
+                (1): Dropout(p=0.1, inplace=False)
+              )
+            )
+          )
+        )
+        (1): Residual(
+          (fn): PreNorm(
+            (norm): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+            (fn): FeedForward(
+              (net): Sequential(
+                (0): Linear(in_features=512, out_features=2048, bias=True)
+                (1): GELU()
+                (2): Dropout(p=0.1, inplace=False)
+                (3): Linear(in_features=2048, out_features=512, bias=True)
+                (4): Dropout(p=0.1, inplace=False)
+              )
+            )
+          )
+        )
+      )
+      (10): ModuleList(
+        (0): Residual(
+          (fn): PreNorm(
+            (norm): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+            (fn): Attention(
+              (to_qkv): Linear(in_features=512, out_features=1536, bias=False)
+              (to_out): Sequential(
+                (0): Linear(in_features=512, out_features=512, bias=True)
+                (1): Dropout(p=0.1, inplace=False)
+              )
+            )
+          )
+        )
+        (1): Residual(
+          (fn): PreNorm(
+            (norm): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+            (fn): FeedForward(
+              (net): Sequential(
+                (0): Linear(in_features=512, out_features=2048, bias=True)
+                (1): GELU()
+                (2): Dropout(p=0.1, inplace=False)
+                (3): Linear(in_features=2048, out_features=512, bias=True)
+                (4): Dropout(p=0.1, inplace=False)
+              )
+            )
+          )
+        )
+      )
+      (11): ModuleList(
+        (0): Residual(
+          (fn): PreNorm(
+            (norm): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+            (fn): Attention(
+              (to_qkv): Linear(in_features=512, out_features=1536, bias=False)
+              (to_out): Sequential(
+                (0): Linear(in_features=512, out_features=512, bias=True)
+                (1): Dropout(p=0.1, inplace=False)
+              )
+            )
+          )
+        )
+        (1): Residual(
+          (fn): PreNorm(
+            (norm): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+            (fn): FeedForward(
+              (net): Sequential(
+                (0): Linear(in_features=512, out_features=2048, bias=True)
+                (1): GELU()
+                (2): Dropout(p=0.1, inplace=False)
+                (3): Linear(in_features=2048, out_features=512, bias=True)
+                (4): Dropout(p=0.1, inplace=False)
+              )
+            )
+          )
+        )
+      )
+      (12): ModuleList(
+        (0): Residual(
+          (fn): PreNorm(
+            (norm): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+            (fn): Attention(
+              (to_qkv): Linear(in_features=512, out_features=1536, bias=False)
+              (to_out): Sequential(
+                (0): Linear(in_features=512, out_features=512, bias=True)
+                (1): Dropout(p=0.1, inplace=False)
+              )
+            )
+          )
+        )
+        (1): Residual(
+          (fn): PreNorm(
+            (norm): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+            (fn): FeedForward(
+              (net): Sequential(
+                (0): Linear(in_features=512, out_features=2048, bias=True)
+                (1): GELU()
+                (2): Dropout(p=0.1, inplace=False)
+                (3): Linear(in_features=2048, out_features=512, bias=True)
+                (4): Dropout(p=0.1, inplace=False)
+              )
+            )
+          )
+        )
+      )
+      (13): ModuleList(
+        (0): Residual(
+          (fn): PreNorm(
+            (norm): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+            (fn): Attention(
+              (to_qkv): Linear(in_features=512, out_features=1536, bias=False)
+              (to_out): Sequential(
+                (0): Linear(in_features=512, out_features=512, bias=True)
+                (1): Dropout(p=0.1, inplace=False)
+              )
+            )
+          )
+        )
+        (1): Residual(
+          (fn): PreNorm(
+            (norm): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+            (fn): FeedForward(
+              (net): Sequential(
+                (0): Linear(in_features=512, out_features=2048, bias=True)
+                (1): GELU()
+                (2): Dropout(p=0.1, inplace=False)
+                (3): Linear(in_features=2048, out_features=512, bias=True)
+                (4): Dropout(p=0.1, inplace=False)
+              )
+            )
+          )
+        )
+      )
+      (14): ModuleList(
+        (0): Residual(
+          (fn): PreNorm(
+            (norm): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+            (fn): Attention(
+              (to_qkv): Linear(in_features=512, out_features=1536, bias=False)
+              (to_out): Sequential(
+                (0): Linear(in_features=512, out_features=512, bias=True)
+                (1): Dropout(p=0.1, inplace=False)
+              )
+            )
+          )
+        )
+        (1): Residual(
+          (fn): PreNorm(
+            (norm): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+            (fn): FeedForward(
+              (net): Sequential(
+                (0): Linear(in_features=512, out_features=2048, bias=True)
+                (1): GELU()
+                (2): Dropout(p=0.1, inplace=False)
+                (3): Linear(in_features=2048, out_features=512, bias=True)
+                (4): Dropout(p=0.1, inplace=False)
+              )
+            )
+          )
+        )
+      )
+      (15): ModuleList(
+        (0): Residual(
+          (fn): PreNorm(
+            (norm): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+            (fn): Attention(
+              (to_qkv): Linear(in_features=512, out_features=1536, bias=False)
+              (to_out): Sequential(
+                (0): Linear(in_features=512, out_features=512, bias=True)
+                (1): Dropout(p=0.1, inplace=False)
+              )
+            )
+          )
+        )
+        (1): Residual(
+          (fn): PreNorm(
+            (norm): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+            (fn): FeedForward(
+              (net): Sequential(
+                (0): Linear(in_features=512, out_features=2048, bias=True)
+                (1): GELU()
+                (2): Dropout(p=0.1, inplace=False)
+                (3): Linear(in_features=2048, out_features=512, bias=True)
+                (4): Dropout(p=0.1, inplace=False)
+              )
+            )
+          )
+        )
+      )
+      (16): ModuleList(
+        (0): Residual(
+          (fn): PreNorm(
+            (norm): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+            (fn): Attention(
+              (to_qkv): Linear(in_features=512, out_features=1536, bias=False)
+              (to_out): Sequential(
+                (0): Linear(in_features=512, out_features=512, bias=True)
+                (1): Dropout(p=0.1, inplace=False)
+              )
+            )
+          )
+        )
+        (1): Residual(
+          (fn): PreNorm(
+            (norm): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+            (fn): FeedForward(
+              (net): Sequential(
+                (0): Linear(in_features=512, out_features=2048, bias=True)
+                (1): GELU()
+                (2): Dropout(p=0.1, inplace=False)
+                (3): Linear(in_features=2048, out_features=512, bias=True)
+                (4): Dropout(p=0.1, inplace=False)
+              )
+            )
+          )
+        )
+      )
+      (17): ModuleList(
+        (0): Residual(
+          (fn): PreNorm(
+            (norm): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+            (fn): Attention(
+              (to_qkv): Linear(in_features=512, out_features=1536, bias=False)
+              (to_out): Sequential(
+                (0): Linear(in_features=512, out_features=512, bias=True)
+                (1): Dropout(p=0.1, inplace=False)
+              )
+            )
+          )
+        )
+        (1): Residual(
+          (fn): PreNorm(
+            (norm): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+            (fn): FeedForward(
+              (net): Sequential(
+                (0): Linear(in_features=512, out_features=2048, bias=True)
+                (1): GELU()
+                (2): Dropout(p=0.1, inplace=False)
+                (3): Linear(in_features=2048, out_features=512, bias=True)
+                (4): Dropout(p=0.1, inplace=False)
+              )
+            )
+          )
+        )
+      )
+      (18): ModuleList(
+        (0): Residual(
+          (fn): PreNorm(
+            (norm): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+            (fn): Attention(
+              (to_qkv): Linear(in_features=512, out_features=1536, bias=False)
+              (to_out): Sequential(
+                (0): Linear(in_features=512, out_features=512, bias=True)
+                (1): Dropout(p=0.1, inplace=False)
+              )
+            )
+          )
+        )
+        (1): Residual(
+          (fn): PreNorm(
+            (norm): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+            (fn): FeedForward(
+              (net): Sequential(
+                (0): Linear(in_features=512, out_features=2048, bias=True)
+                (1): GELU()
+                (2): Dropout(p=0.1, inplace=False)
+                (3): Linear(in_features=2048, out_features=512, bias=True)
+                (4): Dropout(p=0.1, inplace=False)
+              )
+            )
+          )
+        )
+      )
+      (19): ModuleList(
+        (0): Residual(
+          (fn): PreNorm(
+            (norm): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+            (fn): Attention(
+              (to_qkv): Linear(in_features=512, out_features=1536, bias=False)
+              (to_out): Sequential(
+                (0): Linear(in_features=512, out_features=512, bias=True)
+                (1): Dropout(p=0.1, inplace=False)
+              )
+            )
+          )
+        )
+        (1): Residual(
+          (fn): PreNorm(
+            (norm): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+            (fn): FeedForward(
+              (net): Sequential(
+                (0): Linear(in_features=512, out_features=2048, bias=True)
+                (1): GELU()
+                (2): Dropout(p=0.1, inplace=False)
+                (3): Linear(in_features=2048, out_features=512, bias=True)
+                (4): Dropout(p=0.1, inplace=False)
+              )
+            )
+          )
+        )
+      )
+    )
+  )
+  (to_latent): Identity()
+  (mlp_head): Sequential(
+    (0): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+  )
+  (loss): CosFace(in_features = 512, out_features = 93431, s = 64.0, m = 0.35)
+)
+VITs Backbone Generated
+============================================================
+============================================================
+CrossEntropyLoss()
+Softmax Loss Generated
+============================================================
+============================================================
+AdamW (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    eps: 1e-08
+    lr: 5e-05
+    weight_decay: 0.0
+
+Parameter Group 1
+    amsgrad: False
+    betas: (0.9, 0.999)
+    eps: 1e-08
+    lr: 5e-05
+    weight_decay: 0.05
+)
+Optimizer Generated
+============================================================
+============================================================
+/home/cib-bupt/yy/insightface_torch/results/VITSs8p10_face_retina_cosface_s2/Backbone_VITs_Epoch_6_Batch_64000_Time_2021-03-23-09-44_checkpoint.pth
+Loading Backbone Checkpoint '/home/cib-bupt/yy/insightface_torch/results/VITSs8p10_face_retina_cosface_s2/Backbone_VITs_Epoch_6_Batch_64000_Time_2021-03-23-09-44_checkpoint.pth'
+============================================================
+Epoch 1 Batch 100	Speed: 254.56 samples/s	Training Loss 0.7725 (0.6987)	Training Prec@1 93.125 (91.850)
+Epoch 1 Batch 200	Speed: 278.58 samples/s	Training Loss 0.7972 (0.6999)	Training Prec@1 91.667 (92.023)
+Epoch 1 Batch 300	Speed: 280.21 samples/s	Training Loss 0.6746 (0.6774)	Training Prec@1 92.708 (92.098)
+Epoch 1 Batch 400	Speed: 280.14 samples/s	Training Loss 0.6512 (0.6984)	Training Prec@1 93.333 (92.185)
+Epoch 1 Batch 500	Speed: 280.92 samples/s	Training Loss 0.6955 (0.6688)	Training Prec@1 92.917 (92.402)
+Epoch 1 Batch 600	Speed: 281.46 samples/s	Training Loss 0.6041 (0.6765)	Training Prec@1 91.875 (92.206)
+Epoch 1 Batch 700	Speed: 280.90 samples/s	Training Loss 0.6132 (0.6839)	Training Prec@1 91.667 (92.494)
+Epoch 1 Batch 800	Speed: 280.46 samples/s	Training Loss 0.5667 (0.6739)	Training Prec@1 93.333 (92.369)
+Epoch 1 Batch 900	Speed: 278.97 samples/s	Training Loss 0.5485 (0.6560)	Training Prec@1 92.292 (92.437)
+Epoch 1 Batch 1000	Speed: 280.07 samples/s	Training Loss 0.5969 (0.7079)	Training Prec@1 91.667 (92.254)
+Epoch 1 Batch 1100	Speed: 280.93 samples/s	Training Loss 0.8555 (0.7068)	Training Prec@1 90.000 (92.335)
+Epoch 1 Batch 1200	Speed: 280.73 samples/s	Training Loss 0.6557 (0.7044)	Training Prec@1 92.500 (92.196)
+Epoch 1 Batch 1300	Speed: 281.81 samples/s	Training Loss 1.0322 (0.7045)	Training Prec@1 90.833 (92.162)
+Epoch 1 Batch 1400	Speed: 280.32 samples/s	Training Loss 0.6510 (0.6671)	Training Prec@1 91.875 (92.212)
+Epoch 1 Batch 1500	Speed: 280.20 samples/s	Training Loss 0.7130 (0.6668)	Training Prec@1 92.083 (92.292)
+Epoch 1 Batch 1600	Speed: 280.95 samples/s	Training Loss 0.8687 (0.6781)	Training Prec@1 91.458 (92.406)
+Epoch 1 Batch 1700	Speed: 279.26 samples/s	Training Loss 0.6255 (0.6666)	Training Prec@1 90.417 (92.515)
+Epoch 1 Batch 1800	Speed: 280.96 samples/s	Training Loss 0.5130 (0.6824)	Training Prec@1 93.542 (92.237)
+Epoch 1 Batch 1900	Speed: 281.64 samples/s	Training Loss 0.6820 (0.6794)	Training Prec@1 91.042 (92.294)
+Epoch 1 Batch 2000	Speed: 280.79 samples/s	Training Loss 0.7711 (0.7126)	Training Prec@1 90.417 (92.160)
+Learning rate 0.000050
+Perform Evaluation on ['lfw', 'talfw', 'calfw_961', 'cplfw_92867', 'cfp_fp', 'agedb_30'] , and Save Checkpoints...
+(12000, 512)
+[lfw][2000]XNorm: 20.23156
+[lfw][2000]Accuracy-Flip: 0.99733+-0.00249
+[lfw][2000]Best-Threshold: 1.55100
+(12000, 512)
+[talfw][2000]XNorm: 19.91689
+[talfw][2000]Accuracy-Flip: 0.72883+-0.01368
+[talfw][2000]Best-Threshold: 1.54900
+(12000, 512)
+[calfw_961][2000]XNorm: 20.20981
+[calfw_961][2000]Accuracy-Flip: 0.96033+-0.01204
+[calfw_961][2000]Best-Threshold: 1.61000
+(12000, 512)
+[cplfw_92867][2000]XNorm: 20.10270
+[cplfw_92867][2000]Accuracy-Flip: 0.92850+-0.01084
+[cplfw_92867][2000]Best-Threshold: 1.73000
+(14000, 512)
+[cfp_fp][2000]XNorm: 20.11364
+[cfp_fp][2000]Accuracy-Flip: 0.96257+-0.01088
+[cfp_fp][2000]Best-Threshold: 1.71500
+(12000, 512)
+[agedb_30][2000]XNorm: 20.39541
+[agedb_30][2000]Accuracy-Flip: 0.97850+-0.00769
+[agedb_30][2000]Best-Threshold: 1.66000
+highest_acc: [0.9973333333333333, 0.7288333333333333, 0.9603333333333334, 0.9285, 0.9625714285714284, 0.9785]
+Epoch 1 Batch 2100	Speed: 78.06 samples/s	Training Loss 0.6935 (0.6831)	Training Prec@1 93.125 (92.483)
+Epoch 1 Batch 2200	Speed: 279.69 samples/s	Training Loss 0.6044 (0.6754)	Training Prec@1 91.667 (92.406)
+Epoch 1 Batch 2300	Speed: 280.12 samples/s	Training Loss 0.5835 (0.6941)	Training Prec@1 94.375 (92.381)
+Epoch 1 Batch 2400	Speed: 280.44 samples/s	Training Loss 0.5610 (0.6898)	Training Prec@1 93.542 (92.029)
+Epoch 1 Batch 2500	Speed: 280.05 samples/s	Training Loss 0.5184 (0.6894)	Training Prec@1 90.833 (91.996)
+Epoch 1 Batch 2600	Speed: 279.82 samples/s	Training Loss 0.5825 (0.7171)	Training Prec@1 90.833 (91.960)
+Epoch 1 Batch 2700	Speed: 279.68 samples/s	Training Loss 0.7074 (0.6943)	Training Prec@1 92.083 (92.004)
+Epoch 1 Batch 2800	Speed: 280.26 samples/s	Training Loss 0.5709 (0.7066)	Training Prec@1 91.875 (92.067)
+Epoch 1 Batch 2900	Speed: 279.40 samples/s	Training Loss 0.8829 (0.7349)	Training Prec@1 92.292 (91.927)
+Epoch 1 Batch 3000	Speed: 279.67 samples/s	Training Loss 0.5528 (0.7000)	Training Prec@1 93.333 (92.123)
+Epoch 1 Batch 3100	Speed: 279.40 samples/s	Training Loss 0.8578 (0.6993)	Training Prec@1 91.458 (92.175)
+Epoch 1 Batch 3200	Speed: 280.63 samples/s	Training Loss 0.7486 (0.7107)	Training Prec@1 92.083 (92.029)
+Epoch 1 Batch 3300	Speed: 279.86 samples/s	Training Loss 0.7412 (0.7019)	Training Prec@1 91.667 (92.202)
+Epoch 1 Batch 3400	Speed: 280.67 samples/s	Training Loss 0.6334 (0.6941)	Training Prec@1 90.833 (92.054)
+Epoch 1 Batch 3500	Speed: 279.87 samples/s	Training Loss 0.6565 (0.6939)	Training Prec@1 93.125 (92.158)
+Epoch 1 Batch 3600	Speed: 279.41 samples/s	Training Loss 0.6909 (0.7264)	Training Prec@1 92.292 (91.802)
+Epoch 1 Batch 3700	Speed: 280.28 samples/s	Training Loss 0.7892 (0.7217)	Training Prec@1 91.667 (91.852)
+Epoch 1 Batch 3800	Speed: 280.21 samples/s	Training Loss 0.6312 (0.7293)	Training Prec@1 94.167 (91.927)
+Epoch 1 Batch 3900	Speed: 279.70 samples/s	Training Loss 0.8179 (0.7164)	Training Prec@1 91.875 (91.671)
+Epoch 1 Batch 4000	Speed: 279.47 samples/s	Training Loss 0.7877 (0.6880)	Training Prec@1 91.042 (91.981)
+Learning rate 0.000050
+Perform Evaluation on ['lfw', 'talfw', 'calfw_961', 'cplfw_92867', 'cfp_fp', 'agedb_30'] , and Save Checkpoints...
+(12000, 512)
+[lfw][4000]XNorm: 20.29004
+[lfw][4000]Accuracy-Flip: 0.99800+-0.00245
+[lfw][4000]Best-Threshold: 1.57700
+(12000, 512)
+[talfw][4000]XNorm: 19.97998
+[talfw][4000]Accuracy-Flip: 0.72950+-0.01585
+[talfw][4000]Best-Threshold: 1.58200
+(12000, 512)
+[calfw_961][4000]XNorm: 20.27527
+[calfw_961][4000]Accuracy-Flip: 0.96067+-0.01230
+[calfw_961][4000]Best-Threshold: 1.60200
+(12000, 512)
+[cplfw_92867][4000]XNorm: 20.14049
+[cplfw_92867][4000]Accuracy-Flip: 0.92783+-0.01160
+[cplfw_92867][4000]Best-Threshold: 1.71000
+(14000, 512)
+[cfp_fp][4000]XNorm: 20.15587
+[cfp_fp][4000]Accuracy-Flip: 0.96343+-0.01064
+[cfp_fp][4000]Best-Threshold: 1.71400
+(12000, 512)
+[agedb_30][4000]XNorm: 20.49123
+[agedb_30][4000]Accuracy-Flip: 0.97633+-0.00733
+[agedb_30][4000]Best-Threshold: 1.68400
+highest_acc: [0.998, 0.7295, 0.9606666666666666, 0.9285, 0.9634285714285713, 0.9785]
+Epoch 1 Batch 4100	Speed: 78.91 samples/s	Training Loss 0.6289 (0.6981)	Training Prec@1 90.833 (91.981)
+Epoch 1 Batch 4200	Speed: 280.97 samples/s	Training Loss 0.5331 (0.7353)	Training Prec@1 94.375 (91.721)
+Epoch 1 Batch 4300	Speed: 281.54 samples/s	Training Loss 0.6770 (0.7005)	Training Prec@1 92.292 (92.156)
+Epoch 1 Batch 4400	Speed: 279.96 samples/s	Training Loss 0.7836 (0.7626)	Training Prec@1 92.500 (91.681)
+Epoch 1 Batch 4500	Speed: 281.04 samples/s	Training Loss 0.8201 (0.7298)	Training Prec@1 93.750 (91.779)
+Epoch 1 Batch 4600	Speed: 281.34 samples/s	Training Loss 0.6763 (0.7130)	Training Prec@1 91.875 (92.004)
+Epoch 1 Batch 4700	Speed: 280.34 samples/s	Training Loss 0.5943 (0.7241)	Training Prec@1 92.708 (91.696)
+Epoch 1 Batch 4800	Speed: 280.89 samples/s	Training Loss 0.6378 (0.7179)	Training Prec@1 92.500 (91.983)
+Epoch 1 Batch 4900	Speed: 281.12 samples/s	Training Loss 0.8613 (0.7581)	Training Prec@1 89.167 (91.742)
+Epoch 1 Batch 5000	Speed: 280.42 samples/s	Training Loss 0.6862 (0.7346)	Training Prec@1 91.667 (91.935)
+Epoch 1 Batch 5100	Speed: 279.72 samples/s	Training Loss 1.0246 (0.7362)	Training Prec@1 91.042 (91.675)
+Epoch 1 Batch 5200	Speed: 281.02 samples/s	Training Loss 0.8613 (0.7120)	Training Prec@1 91.667 (91.783)
+Epoch 1 Batch 5300	Speed: 279.62 samples/s	Training Loss 0.6258 (0.7011)	Training Prec@1 92.708 (91.869)
+Epoch 1 Batch 5400	Speed: 280.13 samples/s	Training Loss 0.5694 (0.7112)	Training Prec@1 91.250 (92.019)
+Epoch 1 Batch 5500	Speed: 281.40 samples/s	Training Loss 0.6743 (0.7350)	Training Prec@1 92.083 (91.773)
+Epoch 1 Batch 5600	Speed: 280.16 samples/s	Training Loss 0.7482 (0.7102)	Training Prec@1 90.417 (92.083)
+Epoch 1 Batch 5700	Speed: 281.21 samples/s	Training Loss 0.9088 (0.7467)	Training Prec@1 92.708 (91.621)
+Epoch 1 Batch 5800	Speed: 280.38 samples/s	Training Loss 0.7690 (0.7429)	Training Prec@1 88.958 (91.706)
+Epoch 1 Batch 5900	Speed: 280.56 samples/s	Training Loss 0.6884 (0.7787)	Training Prec@1 93.333 (91.260)
+Epoch 1 Batch 6000	Speed: 281.19 samples/s	Training Loss 0.6046 (0.6941)	Training Prec@1 91.250 (91.954)
+Learning rate 0.000050
+Perform Evaluation on ['lfw', 'talfw', 'calfw_961', 'cplfw_92867', 'cfp_fp', 'agedb_30'] , and Save Checkpoints...
+(12000, 512)
+[lfw][6000]XNorm: 20.26231
+[lfw][6000]Accuracy-Flip: 0.99800+-0.00256
+[lfw][6000]Best-Threshold: 1.56800
+(12000, 512)
+[talfw][6000]XNorm: 19.95043
+[talfw][6000]Accuracy-Flip: 0.73050+-0.01939
+[talfw][6000]Best-Threshold: 1.53700
+(12000, 512)
+[calfw_961][6000]XNorm: 20.23318
+[calfw_961][6000]Accuracy-Flip: 0.96033+-0.01236
+[calfw_961][6000]Best-Threshold: 1.59900
+(12000, 512)
+[cplfw_92867][6000]XNorm: 20.13530
+[cplfw_92867][6000]Accuracy-Flip: 0.92767+-0.01202
+[cplfw_92867][6000]Best-Threshold: 1.71800
+(14000, 512)
+[cfp_fp][6000]XNorm: 20.14742
+[cfp_fp][6000]Accuracy-Flip: 0.96357+-0.01182
+[cfp_fp][6000]Best-Threshold: 1.71400
+(12000, 512)
+[agedb_30][6000]XNorm: 20.43031
+[agedb_30][6000]Accuracy-Flip: 0.97600+-0.00898
+[agedb_30][6000]Best-Threshold: 1.67200
+highest_acc: [0.998, 0.7305, 0.9606666666666666, 0.9285, 0.9635714285714286, 0.9785]
+Epoch 1 Batch 6100	Speed: 79.02 samples/s	Training Loss 0.7405 (0.7223)	Training Prec@1 91.458 (91.810)
+Epoch 1 Batch 6200	Speed: 278.93 samples/s	Training Loss 0.6434 (0.7385)	Training Prec@1 92.708 (91.579)
+Epoch 1 Batch 6300	Speed: 280.58 samples/s	Training Loss 0.8777 (0.7360)	Training Prec@1 91.042 (91.779)
+Epoch 1 Batch 6400	Speed: 281.76 samples/s	Training Loss 0.8164 (0.7093)	Training Prec@1 88.750 (91.744)
+Epoch 1 Batch 6500	Speed: 281.07 samples/s	Training Loss 0.9309 (0.7248)	Training Prec@1 92.708 (91.858)
+Epoch 1 Batch 6600	Speed: 282.70 samples/s	Training Loss 0.7549 (0.7774)	Training Prec@1 90.000 (91.512)
+Epoch 1 Batch 6700	Speed: 281.57 samples/s	Training Loss 0.7742 (0.7395)	Training Prec@1 90.833 (91.577)
+Epoch 1 Batch 6800	Speed: 282.64 samples/s	Training Loss 0.9388 (0.7232)	Training Prec@1 91.667 (91.908)
+Epoch 1 Batch 6900	Speed: 282.86 samples/s	Training Loss 0.5512 (0.7215)	Training Prec@1 90.208 (91.554)
+Epoch 1 Batch 7000	Speed: 282.61 samples/s	Training Loss 0.5651 (0.7467)	Training Prec@1 92.917 (91.712)
+Epoch 1 Batch 7100	Speed: 281.38 samples/s	Training Loss 0.8342 (0.7249)	Training Prec@1 90.625 (91.694)
+Epoch 1 Batch 7200	Speed: 282.56 samples/s	Training Loss 0.7326 (0.7282)	Training Prec@1 91.042 (91.637)
+Epoch 1 Batch 7300	Speed: 281.86 samples/s	Training Loss 0.7974 (0.7517)	Training Prec@1 92.083 (91.515)
+Epoch 1 Batch 7400	Speed: 282.05 samples/s	Training Loss 1.3260 (0.7380)	Training Prec@1 91.042 (91.540)
+Epoch 1 Batch 7500	Speed: 282.44 samples/s	Training Loss 0.5149 (0.7417)	Training Prec@1 92.708 (91.392)
+Epoch 1 Batch 7600	Speed: 280.97 samples/s	Training Loss 1.1067 (0.7335)	Training Prec@1 92.500 (91.548)
+Epoch 1 Batch 7700	Speed: 282.98 samples/s	Training Loss 0.8309 (0.7442)	Training Prec@1 89.792 (91.448)
+Epoch 1 Batch 7800	Speed: 282.25 samples/s	Training Loss 0.8508 (0.7433)	Training Prec@1 91.042 (91.635)
+Epoch 1 Batch 7900	Speed: 283.00 samples/s	Training Loss 0.6911 (0.7253)	Training Prec@1 91.667 (91.554)
+Epoch 1 Batch 8000	Speed: 283.31 samples/s	Training Loss 0.8884 (0.7507)	Training Prec@1 91.250 (91.594)
+Learning rate 0.000050
+Perform Evaluation on ['lfw', 'talfw', 'calfw_961', 'cplfw_92867', 'cfp_fp', 'agedb_30'] , and Save Checkpoints...
+(12000, 512)
+[lfw][8000]XNorm: 20.24767
+[lfw][8000]Accuracy-Flip: 0.99750+-0.00261
+[lfw][8000]Best-Threshold: 1.54300
+(12000, 512)
+[talfw][8000]XNorm: 19.92717
+[talfw][8000]Accuracy-Flip: 0.72850+-0.01429
+[talfw][8000]Best-Threshold: 1.56600
+(12000, 512)
+[calfw_961][8000]XNorm: 20.23172
+[calfw_961][8000]Accuracy-Flip: 0.95983+-0.01102
+[calfw_961][8000]Best-Threshold: 1.59500
+(12000, 512)
+[cplfw_92867][8000]XNorm: 20.10089
+[cplfw_92867][8000]Accuracy-Flip: 0.92800+-0.01187
+[cplfw_92867][8000]Best-Threshold: 1.71900
+(14000, 512)
+[cfp_fp][8000]XNorm: 20.10430
+[cfp_fp][8000]Accuracy-Flip: 0.96371+-0.01141
+[cfp_fp][8000]Best-Threshold: 1.70100
+(12000, 512)
+[agedb_30][8000]XNorm: 20.44332
+[agedb_30][8000]Accuracy-Flip: 0.97600+-0.00943
+[agedb_30][8000]Best-Threshold: 1.66400
+highest_acc: [0.998, 0.7305, 0.9606666666666666, 0.9285, 0.9637142857142855, 0.9785]
+Epoch 1 Batch 8100	Speed: 79.37 samples/s	Training Loss 0.8957 (0.7546)	Training Prec@1 92.500 (91.437)
+Epoch 1 Batch 8200	Speed: 280.46 samples/s	Training Loss 0.5907 (0.7261)	Training Prec@1 90.417 (91.665)
+Epoch 1 Batch 8300	Speed: 283.04 samples/s	Training Loss 0.7900 (0.8591)	Training Prec@1 92.083 (89.752)
+Epoch 1 Batch 8400	Speed: 282.35 samples/s	Training Loss 0.7785 (0.7739)	Training Prec@1 90.000 (91.415)
+Epoch 1 Batch 8500	Speed: 281.70 samples/s	Training Loss 0.8977 (0.7466)	Training Prec@1 90.625 (91.567)
+Epoch 1 Batch 8600	Speed: 283.07 samples/s	Training Loss 0.7290 (0.7343)	Training Prec@1 92.083 (91.737)
+Epoch 1 Batch 8700	Speed: 282.10 samples/s	Training Loss 0.7760 (0.7744)	Training Prec@1 93.125 (91.427)
+Epoch 1 Batch 8800	Speed: 282.77 samples/s	Training Loss 1.0230 (0.7947)	Training Prec@1 90.833 (91.406)
+Epoch 1 Batch 8900	Speed: 282.60 samples/s	Training Loss 0.5742 (0.7145)	Training Prec@1 91.250 (91.844)
+Epoch 1 Batch 9000	Speed: 281.75 samples/s	Training Loss 0.7432 (0.7756)	Training Prec@1 91.875 (91.496)
+Epoch 1 Batch 9100	Speed: 281.73 samples/s	Training Loss 0.9612 (0.7539)	Training Prec@1 90.833 (91.571)
+Epoch 1 Batch 9200	Speed: 283.40 samples/s	Training Loss 0.9689 (0.7264)	Training Prec@1 91.042 (91.442)
+Epoch 1 Batch 9300	Speed: 282.38 samples/s	Training Loss 0.6396 (0.7563)	Training Prec@1 91.042 (91.706)
+Epoch 1 Batch 9400	Speed: 283.57 samples/s	Training Loss 0.9196 (0.7573)	Training Prec@1 91.458 (91.446)
+Epoch 1 Batch 9500	Speed: 282.18 samples/s	Training Loss 0.6804 (0.7543)	Training Prec@1 91.875 (91.573)
+Epoch 1 Batch 9600	Speed: 283.08 samples/s	Training Loss 0.5852 (0.7526)	Training Prec@1 91.250 (91.467)
+Epoch 1 Batch 9700	Speed: 283.06 samples/s	Training Loss 0.6653 (0.7264)	Training Prec@1 92.500 (91.619)
+Epoch 1 Batch 9800	Speed: 283.27 samples/s	Training Loss 0.6058 (0.7856)	Training Prec@1 91.875 (91.281)
+Epoch 1 Batch 9900	Speed: 281.91 samples/s	Training Loss 0.7341 (0.7578)	Training Prec@1 90.833 (91.475)
+Epoch 1 Batch 10000	Speed: 283.22 samples/s	Training Loss 1.0130 (0.7511)	Training Prec@1 92.500 (91.442)
+Learning rate 0.000050
+Perform Evaluation on ['lfw', 'talfw', 'calfw_961', 'cplfw_92867', 'cfp_fp', 'agedb_30'] , and Save Checkpoints...
+(12000, 512)
+[lfw][10000]XNorm: 20.34144
+[lfw][10000]Accuracy-Flip: 0.99767+-0.00300
+[lfw][10000]Best-Threshold: 1.53900
+(12000, 512)
+[talfw][10000]XNorm: 20.03236
+[talfw][10000]Accuracy-Flip: 0.73150+-0.01731
+[talfw][10000]Best-Threshold: 1.58500
+(12000, 512)
+[calfw_961][10000]XNorm: 20.31389
+[calfw_961][10000]Accuracy-Flip: 0.96000+-0.01113
+[calfw_961][10000]Best-Threshold: 1.60000
+(12000, 512)
+[cplfw_92867][10000]XNorm: 20.17587
+[cplfw_92867][10000]Accuracy-Flip: 0.92617+-0.00925
+[cplfw_92867][10000]Best-Threshold: 1.69000
+(14000, 512)
+[cfp_fp][10000]XNorm: 20.19865
+[cfp_fp][10000]Accuracy-Flip: 0.96371+-0.01064
+[cfp_fp][10000]Best-Threshold: 1.71200
+(12000, 512)
+[agedb_30][10000]XNorm: 20.50081
+[agedb_30][10000]Accuracy-Flip: 0.97683+-0.00858
+[agedb_30][10000]Best-Threshold: 1.67600
+highest_acc: [0.998, 0.7315, 0.9606666666666666, 0.9285, 0.9637142857142857, 0.9785]
+Epoch 1 Batch 10100	Speed: 79.25 samples/s	Training Loss 1.0858 (0.7838)	Training Prec@1 90.417 (91.340)
+Epoch 1 Batch 10200	Speed: 283.03 samples/s	Training Loss 0.6424 (0.7775)	Training Prec@1 93.542 (91.333)
+Epoch 1 Batch 10300	Speed: 281.97 samples/s	Training Loss 0.5966 (0.7396)	Training Prec@1 93.333 (91.546)
+Epoch 1 Batch 10400	Speed: 281.85 samples/s	Training Loss 0.7141 (0.7854)	Training Prec@1 94.167 (91.410)
+Epoch 1 Batch 10500	Speed: 282.87 samples/s	Training Loss 0.3939 (0.7743)	Training Prec@1 94.375 (91.233)
+Epoch 1 Batch 10600	Speed: 281.97 samples/s	Training Loss 0.7521 (0.7753)	Training Prec@1 92.083 (91.131)
+Epoch 1 Batch 10700	Speed: 283.02 samples/s	Training Loss 0.9627 (0.7597)	Training Prec@1 89.792 (91.210)
+Epoch 2 Batch 10800	Speed: 1769.70 samples/s	Training Loss 0.4978 (0.7267)	Training Prec@1 96.042 (91.698)
+Epoch 2 Batch 10900	Speed: 281.67 samples/s	Training Loss 0.3360 (0.5135)	Training Prec@1 95.208 (94.827)
+Epoch 2 Batch 11000	Speed: 281.92 samples/s	Training Loss 0.8434 (0.5553)	Training Prec@1 93.125 (94.787)
+Epoch 2 Batch 11100	Speed: 282.43 samples/s	Training Loss 0.5053 (0.5362)	Training Prec@1 96.042 (94.865)
+Epoch 2 Batch 11200	Speed: 282.58 samples/s	Training Loss 0.4692 (0.5316)	Training Prec@1 95.000 (94.892)
+Epoch 2 Batch 11300	Speed: 282.22 samples/s	Training Loss 0.4212 (0.5361)	Training Prec@1 94.375 (94.660)
+Epoch 2 Batch 11400	Speed: 282.24 samples/s	Training Loss 0.4104 (0.5582)	Training Prec@1 94.375 (94.827)
+Epoch 2 Batch 11500	Speed: 283.65 samples/s	Training Loss 0.3444 (0.5621)	Training Prec@1 96.042 (94.596)
+Epoch 2 Batch 11600	Speed: 281.75 samples/s	Training Loss 0.6170 (0.5798)	Training Prec@1 94.792 (94.640)
+Epoch 2 Batch 11700	Speed: 282.32 samples/s	Training Loss 0.5310 (0.5458)	Training Prec@1 94.375 (94.654)
+Epoch 2 Batch 11800	Speed: 281.30 samples/s	Training Loss 0.6137 (0.5710)	Training Prec@1 92.917 (94.496)
+Epoch 2 Batch 11900	Speed: 281.16 samples/s	Training Loss 0.3672 (0.5185)	Training Prec@1 95.417 (94.787)
+Epoch 2 Batch 12000	Speed: 282.92 samples/s	Training Loss 0.5198 (0.5529)	Training Prec@1 94.792 (94.594)
+Learning rate 0.000050
+Perform Evaluation on ['lfw', 'talfw', 'calfw_961', 'cplfw_92867', 'cfp_fp', 'agedb_30'] , and Save Checkpoints...
+(12000, 512)
+[lfw][12000]XNorm: 20.41928
+[lfw][12000]Accuracy-Flip: 0.99733+-0.00249
+[lfw][12000]Best-Threshold: 1.55600
+(12000, 512)
+[talfw][12000]XNorm: 20.12186
+[talfw][12000]Accuracy-Flip: 0.74283+-0.01665
+[talfw][12000]Best-Threshold: 1.58000
+(12000, 512)
+[calfw_961][12000]XNorm: 20.40322
+[calfw_961][12000]Accuracy-Flip: 0.95867+-0.01127
+[calfw_961][12000]Best-Threshold: 1.60000
+(12000, 512)
+[cplfw_92867][12000]XNorm: 20.29869
+[cplfw_92867][12000]Accuracy-Flip: 0.92667+-0.00983
+[cplfw_92867][12000]Best-Threshold: 1.71000
+(14000, 512)
+[cfp_fp][12000]XNorm: 20.27141
+[cfp_fp][12000]Accuracy-Flip: 0.96343+-0.01127
+[cfp_fp][12000]Best-Threshold: 1.70000
+(12000, 512)
+[agedb_30][12000]XNorm: 20.59987
+[agedb_30][12000]Accuracy-Flip: 0.97800+-0.00763
+[agedb_30][12000]Best-Threshold: 1.67000
+highest_acc: [0.998, 0.7428333333333332, 0.9606666666666666, 0.9285, 0.9637142857142857, 0.9785]
+Epoch 2 Batch 12100	Speed: 79.24 samples/s	Training Loss 0.4247 (0.5600)	Training Prec@1 93.958 (94.527)
+Epoch 2 Batch 12200	Speed: 283.09 samples/s	Training Loss 0.5732 (0.5764)	Training Prec@1 94.375 (94.327)
+Epoch 2 Batch 12300	Speed: 283.82 samples/s	Training Loss 0.5638 (0.5467)	Training Prec@1 95.000 (94.571)
+Epoch 2 Batch 12400	Speed: 282.16 samples/s	Training Loss 0.4826 (0.5624)	Training Prec@1 94.375 (94.552)
+Epoch 2 Batch 12500	Speed: 283.02 samples/s	Training Loss 0.4926 (0.5747)	Training Prec@1 95.417 (94.333)
