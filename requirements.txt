@@ -1,0 +1,14 @@
+opencv-python~=4.5.2.54
+mxnet~=1.8.0.post0
+matplotlib~=3.4.2
+sklearn~=0.0
+IPython~=7.24.1
+vit_pytorch
+timm==0.3.2
+torch~=1.9.0
+torchvision~=0.10.0
+numpy~=1.21.0
+scikit-learn~=0.24.2
+Pillow~=8.2.0
+scipy~=1.7.0
+einops~=0.3.0

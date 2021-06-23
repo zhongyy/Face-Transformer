@@ -10,14 +10,12 @@ Recently there has been great interests of Transformer not only in NLP but also 
 
 ### 1. Preparation
 The code is mainly adopted from [Vision Transformer](https://github.com/lucidrains/vit-pytorch), and [DeiT](https://github.com/facebookresearch/deit). In addition to PyTorch and torchvision, install [vit_pytorch](https://github.com/lucidrains/vit-pytorch) by [Phil Wang](https://github.com/lucidrains), and package [timm==0.3.2](https://github.com/rwightman/pytorch-image-models) by [Ross Wightman](https://github.com/rwightman). Sincerely appreciate for their contributions. 
+All needed Packages are found in requirements.txt -> Simply install all packages by:
 ```
-pip install vit-pytorch
-```
-```
-pip install timm==0.3.2
+pip install -r requirements.txt
 ```
 
-Copy the files of fold "copy-to-vit_pytorch-path" to vit-pytorch path.
+Copy the files of folder "copy-to-vit_pytorch-path" to vit_pytorch path.
 ```
 .
 ├── __init__.py
@@ -65,6 +63,10 @@ You can download the following models
 - ViT-P12S8: [Baidu Netdisk](https://pan.baidu.com/s/1VrDfvz4SvYVnPcTlHVKAkg)(password: 7caa), [Google Drive](https://drive.google.com/drive/folders/1tKjPdDz9WiD-dCjHnkdnyLSs9HS9XUGW?usp=sharing)
 
 You can test Models
+
+The content of “property” file for “ms1m_retinaface” dataset is as follows:
+"93431,112,112"
+
 ```
 python test.py --model ./results/ViT-P12S8_ms1m_cosface/Backbone_VITs_Epoch_2_Batch_12000_Time_2021-03-17-04-05_checkpoint.pth --network VIT 
 
