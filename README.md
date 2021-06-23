@@ -11,13 +11,10 @@ Recently there has been great interests of Transformer not only in NLP but also 
 ### 1. Preparation
 The code is mainly adopted from [Vision Transformer](https://github.com/lucidrains/vit-pytorch), and [DeiT](https://github.com/facebookresearch/deit). In addition to PyTorch and torchvision, install [vit_pytorch](https://github.com/lucidrains/vit-pytorch) by [Phil Wang](https://github.com/lucidrains), and package [timm==0.3.2](https://github.com/rwightman/pytorch-image-models) by [Ross Wightman](https://github.com/rwightman). Sincerely appreciate for their contributions. 
 ```
-pip install vit-pytorch
-```
-```
-pip install timm==0.3.2
+pip install -r requirements.txt
 ```
 
-Copy the files of fold "copy-to-vit_pytorch-path" to vit-pytorch path.
+Copy the files of folder "copy-to-vit_pytorch-path" to vit_pytorch path.
 ```
 .
 ├── __init__.py
