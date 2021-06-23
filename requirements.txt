@@ -1,0 +1,7 @@
+opencv-python
+mxnet
+matplotlib
+sklearn
+IPython
+vit_pytorch
+timm==0.3.2
