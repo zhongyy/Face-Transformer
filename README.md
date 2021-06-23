@@ -63,6 +63,10 @@ You can download the following models
 - ViT-P12S8: [Baidu Netdisk](https://pan.baidu.com/s/1VrDfvz4SvYVnPcTlHVKAkg)(password: 7caa), [Google Drive](https://drive.google.com/drive/folders/1tKjPdDz9WiD-dCjHnkdnyLSs9HS9XUGW?usp=sharing)
 
 You can test Models
+
+The content of “property” file for “ms1m_retinaface” dataset is as follows:
+"93431,112,112"
+
 ```
 python test.py --model ./results/ViT-P12S8_ms1m_cosface/Backbone_VITs_Epoch_2_Batch_12000_Time_2021-03-17-04-05_checkpoint.pth --network VIT 
 
